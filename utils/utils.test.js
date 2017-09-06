@@ -4,20 +4,34 @@ const utils = require('./utils');
 it('should add two numbers', () => {
     var result = utils.add(33, 11);
 
-    expect(result).toBe(44).toBeA('number');
+    expect(result).toBeA('number').toBe(44);
+});
+
+it('should async add two numbers', (done) => {
+    utils.asyncAdd(2,5, (result) => {
+        expect(result).toBeA('number').toBe(7);
+        done();
+    });
 });
 
 it('should square a number', ()=>{
     var result = utils.square(2);
 
-    expect(result).toBe(4).toBeA('number');
+    expect(result).toBeA('number').toBe(4);
+});
+
+it('should async square a number', (done) => {
+    utils.asyncSquare(8, (result) => {
+        expect(result).toBeA('number').toBe(64);
+        done();
+    });
 });
 
 it('should verify first and last names', () => {
     var user = { location: 'Brazil', age: 26 };
     utils.setName(user, 'Leonel Liesenberg');
 
-    expect(user).toInclude({ firstName: 'Leonel', lastName: 'Liesenberg' }).toBeAn('object');
+    expect(user).toBeAn('object').toInclude({ firstName: 'Leonel', lastName: 'Liesenberg' });
 });
 
 it('should test some values', () => {
